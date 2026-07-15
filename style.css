@@ -277,13 +277,35 @@ button:focus-visible {
 }
 
 .logo-img {
-  width: 400%;
-  height: 400%;
+  width: 200%;
+  height: 200%;
   object-fit: contain;
   padding: 6px;
   border-radius: 16px;
 }
+/* --- Selo de destaque --- */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  margin-bottom: 26px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 24px -6px rgba(212, 175, 55, 0.4);
+}
 
+.seal__icon {
+  width: 14px;
+  height: 14px;
+  color: var(--gold-light);
+}
 
 /* --- Título --- */
 .hero__title {
