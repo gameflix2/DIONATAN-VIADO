@@ -1,138 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Central da Sorte • Atendimento Canguçu</title>
-  <meta name="description" content="Central da Sorte - atendimento rápido, prático e seguro para Canguçu, direto pelo WhatsApp.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central da Sorte</title>
+<meta name="description" content="Central da Sorte - fale agora no WhatsApp.">
 
-  <!-- Fonts: Fraunces (display, carrega personalidade) + Manrope (corpo, legível) + Space Mono (rótulos/eyebrows) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     PARA EDITAR CORES/FONTE: é só mexer aqui, tudo puxa daqui
+     ========================================================= */
+  :root{
+    --bg-1: #0a0f0d;
+    --bg-2: #0f1f18;
+    --gold: #f0c15c;
+    --gold-soft: #f5d98a;
+    --cream: #f7f2e6;
+    --whats: #25d366;
+    --whats-dark: #1fa851;
+    --font-display: "Georgia", "Times New Roman", serif;
+    --font-body: -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
 
-  <link rel="stylesheet" href="css/style.css">
+  *, *::before, *::after{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--cream);
+    background:
+      radial-gradient(60% 50% at 50% 0%, rgba(240,193,92,0.16) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px 100px;
+  }
+
+  .page{
+    width: 100%;
+    max-width: 440px;
+    text-align: center;
+  }
+
+  /* ---------- LOGO ---------- */
+  .logo-wrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .logo-glow{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(240,193,92,0.25) 0%, transparent 70%);
+  }
+  .logo-glow img{
+    width: 92px;
+    height: 92px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: var(--cream);
+    padding: 6px;
+  }
+
+  /* ---------- TÍTULO ---------- */
+  .eyebrow{
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+
+  h1{
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 8vw, 2.3rem);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    color: var(--cream);
+  }
+  h1 .destaque{
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .subtitulo{
+    font-size: 1rem;
+    color: rgba(247,242,230,0.78);
+    max-width: 34ch;
+    margin: 0 auto 28px;
+  }
+
+  /* ---------- CARD DE INFORMAÇÕES ---------- */
+  .info-card{
+    background: rgba(247,242,230,0.05);
+    border: 1px solid rgba(240,193,92,0.25);
+    border-radius: 18px;
+    padding: 20px 18px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .info-item{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .info-item + .info-item{
+    border-top: 1px solid rgba(240,193,92,0.12);
+  }
+  .info-item .ic{
+    font-size: 1.25rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .info-item strong{
+    display: block;
+    font-size: .95rem;
+    color: var(--cream);
+  }
+  .info-item span{
+    display: block;
+    font-size: .85rem;
+    color: rgba(247,242,230,0.65);
+  }
+
+  /* ---------- BOTÃO WHATSAPP ---------- */
+  .btn-whats{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: linear-gradient(180deg, var(--whats) 0%, var(--whats-dark) 100%);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.08rem;
+    padding: 18px 22px;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px -8px rgba(37,211,102,0.55);
+    animation: pulso 2.4s ease-in-out infinite;
+    text-decoration: none;
+  }
+  .btn-whats:active{ transform: translateY(1px); }
+  .btn-whats svg{ width: 24px; height: 24px; flex-shrink: 0; }
+
+  @keyframes pulso{
+    0%, 100%{ box-shadow: 0 14px 30px -8px rgba(37,211,102,0.55), 0 0 0 0 rgba(37,211,102,0.45); }
+    50%{ box-shadow: 0 14px 30px -8px rgba(37,211,102,0.55), 0 0 0 14px rgba(37,211,102,0); }
+  }
+
+  .microcopy{
+    margin-top: 14px;
+    font-size: .82rem;
+    color: rgba(247,242,230,0.55);
+  }
+
+  /* ---------- BOTÃO FLUTUANTE ---------- */
+  .flutuante{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--whats);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px -6px rgba(37,211,102,0.6);
+    z-index: 50;
+  }
+  .flutuante svg{ width: 26px; height: 26px; color: #fff; }
+
+  footer{
+    margin-top: 32px;
+    font-size: .78rem;
+    color: rgba(247,242,230,0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .btn-whats{ animation: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ================= HEADER / HERO ================= -->
-  <header class="hero">
-    <!-- Trevo decorativo em SVG: o elemento-assinatura da página, reaparece como divisor entre seções -->
-    <svg class="clover-mark clover-mark--hero" viewBox="0 0 200 200" aria-hidden="true">
-      <use href="#clover-shape"></use>
+<div class="page">
+
+  <!-- =====================================================
+       LOGO — troque o src abaixo pelo link da sua imagem
+       ===================================================== -->
+  <div class="logo-wrap">
+    <div class="logo-glow">
+      <img id="logo-img" src="COLOQUE_AQUI_O_LINK_DA_LOGO" alt="Central da Sorte"
+           onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <p class="eyebrow">Canguçu / RS</p>
+  <h1>Atendimento <span class="destaque">rápido</span> e de confiança</h1>
+  <p class="subtitulo">Fale agora com nossa equipe e resolva tudo direto pelo WhatsApp.</p>
+
+  <div class="info-card">
+    <div class="info-item">
+      <span class="ic">🍀</span>
+      <div><strong>Atendimento local</strong><span>Equipe preparada para Canguçu.</span></div>
+    </div>
+    <div class="info-item">
+      <span class="ic">⚡</span>
+      <div><strong>Resposta rápida</strong><span>Contato imediato pelo WhatsApp.</span></div>
+    </div>
+    <div class="info-item">
+      <span class="ic">🔒</span>
+      <div><strong>Atendimento seguro</strong><span>Tudo transparente, do início ao fim.</span></div>
+    </div>
+  </div>
+
+  <a id="btn-whats-principal" class="btn-whats" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.695 4.61 1.897 6.484L4 29l7.716-1.86A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3Zm0 21.818a9.78 9.78 0 0 1-4.99-1.364l-.358-.212-4.58 1.104 1.127-4.463-.234-.367A9.78 9.78 0 0 1 5.182 15C5.182 9.026 10.026 4.182 16 4.182S26.818 9.026 26.818 15 21.973 24.818 16.001 24.818Zm5.373-7.34c-.294-.148-1.74-.858-2.01-.956-.27-.099-.467-.148-.664.148-.196.295-.762.955-.934 1.152-.172.196-.343.221-.637.074-.294-.148-1.243-.458-2.368-1.463-.875-.78-1.466-1.744-1.638-2.039-.172-.295-.018-.454.13-.601.134-.133.294-.344.442-.516.147-.172.196-.295.294-.492.098-.196.049-.369-.025-.516-.074-.148-.664-1.6-.91-2.192-.24-.577-.483-.499-.664-.508-.172-.008-.368-.01-.565-.01-.196 0-.516.074-.786.369-.27.295-1.03 1.006-1.03 2.454 0 1.447 1.055 2.846 1.202 3.043.147.196 2.077 3.172 5.032 4.447.703.303 1.251.484 1.679.62.705.224 1.347.192 1.854.117.566-.085 1.74-.712 1.986-1.4.246-.688.246-1.278.172-1.4-.073-.123-.27-.196-.564-.344Z"/>
     </svg>
-
-    <nav class="container hero-nav">
-      <img src="img/logo.png" class="logo" alt="Central da Sorte" onerror="this.style.display='none'">
-    </nav>
-
-    <div class="container hero-content">
-      <p class="eyebrow">Canguçu / RS</p>
-      <h1>
-        A sorte de <span>Canguçu</span><br>
-        tem atendimento <span>de verdade</span>.
-      </h1>
-      <p class="hero-subtitle">
-        Fale direto com nossa equipe pelo WhatsApp e resolva tudo em minutos,
-        sem complicação e sem enrolação.
-      </p>
-
-      <a class="btn-whats btn-whats--lg" href="https://wa.me/5553984599504" target="_blank" rel="noopener">
-        <svg class="icon-whats" viewBox="0 0 32 32" aria-hidden="true"><use href="#whats-shape"></use></svg>
-        Falar no WhatsApp agora
-      </a>
-
-      <p class="hero-microcopy">Resposta em poucos minutos, todos os dias.</p>
-    </div>
-
-    <div class="hero-image">
-      <img src="img/banner.jpg" alt="" onerror="this.parentElement.style.display='none'">
-    </div>
-  </header>
-
-  <!-- ================= BENEFÍCIOS ================= -->
-  <section class="benefits">
-    <div class="container">
-      <p class="eyebrow eyebrow--dark">Por que a Central da Sorte</p>
-      <h2>Feito para quem é daqui</h2>
-
-      <div class="cards">
-        <article class="card">
-          <span class="card-badge" aria-hidden="true">🍀</span>
-          <h3>Atendimento local</h3>
-          <p>Equipe que conhece Canguçu e fala a sua língua, sem enrolação de central genérica.</p>
-        </article>
-
-        <article class="card">
-          <span class="card-badge" aria-hidden="true">⭐</span>
-          <h3>Tradição</h3>
-          <p>Anos de história atendendo a região com o mesmo cuidado de sempre.</p>
-        </article>
-
-        <article class="card">
-          <span class="card-badge" aria-hidden="true">⚡</span>
-          <h3>Resposta rápida</h3>
-          <p>Contato direto pelo WhatsApp, sem espera em fila ou telefone ocupado.</p>
-        </article>
-
-        <article class="card">
-          <span class="card-badge" aria-hidden="true">🔒</span>
-          <h3>Atendimento transparente</h3>
-          <p>Informações claras do começo ao fim, sem letras miúdas.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CTA FINAL ================= -->
-  <section class="cta">
-    <svg class="clover-mark clover-mark--cta" viewBox="0 0 200 200" aria-hidden="true">
-      <use href="#clover-shape"></use>
-    </svg>
-
-    <div class="container">
-      <p class="eyebrow">Fale agora</p>
-      <h2>Sua sorte está a uma mensagem de distância</h2>
-      <p class="cta-subtitle">Chame nossa equipe no WhatsApp e receba atendimento rápido, prático e seguro.</p>
-
-      <a class="btn-whats btn-whats--lg" href="https://wa.me/5553984599504" target="_blank" rel="noopener">
-        <svg class="icon-whats" viewBox="0 0 32 32" aria-hidden="true"><use href="#whats-shape"></use></svg>
-        Chamar no WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>Central da Sorte • Canguçu/RS</p>
-    </div>
-  </footer>
-
-  <!-- Botão flutuante do WhatsApp -->
-  <a class="floating-whats" href="https://wa.me/5553984599504" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <svg class="icon-whats" viewBox="0 0 32 32" aria-hidden="true"><use href="#whats-shape"></use></svg>
+    Falar no WhatsApp agora
   </a>
+  <p class="microcopy">Resposta em poucos minutos, todos os dias.</p>
 
-  <!-- Sprite SVG oculto: ícone do WhatsApp e o trevo-assinatura, reaproveitados no site inteiro -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <g id="whats-shape">
-        <path fill="currentColor" d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.695 4.61 1.897 6.484L4 29l7.716-1.86A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3Zm0 21.818a9.78 9.78 0 0 1-4.99-1.364l-.358-.212-4.58 1.104 1.127-4.463-.234-.367A9.78 9.78 0 0 1 5.182 15C5.182 9.026 10.026 4.182 16 4.182S26.818 9.026 26.818 15 21.973 24.818 16.001 24.818Zm5.373-7.34c-.294-.148-1.74-.858-2.01-.956-.27-.099-.467-.148-.664.148-.196.295-.762.955-.934 1.152-.172.196-.343.221-.637.074-.294-.148-1.243-.458-2.368-1.463-.875-.78-1.466-1.744-1.638-2.039-.172-.295-.018-.454.13-.601.134-.133.294-.344.442-.516.147-.172.196-.295.294-.492.098-.196.049-.369-.025-.516-.074-.148-.664-1.6-.91-2.192-.24-.577-.483-.499-.664-.508-.172-.008-.368-.01-.565-.01-.196 0-.516.074-.786.369-.27.295-1.03 1.006-1.03 2.454 0 1.447 1.055 2.846 1.202 3.043.147.196 2.077 3.172 5.032 4.447.703.303 1.251.484 1.679.62.705.224 1.347.192 1.854.117.566-.085 1.74-.712 1.986-1.4.246-.688.246-1.278.172-1.4-.073-.123-.27-.196-.564-.344Z"/>
-      </g>
+  <footer>Central da Sorte • Canguçu/RS</footer>
+</div>
 
-      <symbol id="clover-shape" viewBox="0 0 200 200">
-        <g fill="currentColor">
-          <circle cx="100" cy="62" r="32"/>
-          <circle cx="138" cy="100" r="32"/>
-          <circle cx="100" cy="138" r="32"/>
-          <circle cx="62" cy="100" r="32"/>
-        </g>
-        <path stroke="currentColor" stroke-width="4" fill="none" d="M100 138 L100 178"/>
-      </symbol>
-    </defs>
+<!-- Botão flutuante, some quando o botão principal está visível -->
+<a id="btn-whats-flutuante" class="flutuante" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.695 4.61 1.897 6.484L4 29l7.716-1.86A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3Zm0 21.818a9.78 9.78 0 0 1-4.99-1.364l-.358-.212-4.58 1.104 1.127-4.463-.234-.367A9.78 9.78 0 0 1 5.182 15C5.182 9.026 10.026 4.182 16 4.182S26.818 9.026 26.818 15 21.973 24.818 16.001 24.818Zm5.373-7.34c-.294-.148-1.74-.858-2.01-.956-.27-.099-.467-.148-.664.148-.196.295-.762.955-.934 1.152-.172.196-.343.221-.637.074-.294-.148-1.243-.458-2.368-1.463-.875-.78-1.466-1.744-1.638-2.039-.172-.295-.018-.454.13-.601.134-.133.294-.344.442-.516.147-.172.196-.295.294-.492.098-.196.049-.369-.025-.516-.074-.148-.664-1.6-.91-2.192-.24-.577-.483-.499-.664-.508-.172-.008-.368-.01-.565-.01-.196 0-.516.074-.786.369-.27.295-1.03 1.006-1.03 2.454 0 1.447 1.055 2.846 1.202 3.043.147.196 2.077 3.172 5.032 4.447.703.303 1.251.484 1.679.62.705.224 1.347.192 1.854.117.566-.085 1.74-.712 1.986-1.4.246-.688.246-1.278.172-1.4-.073-.123-.27-.196-.564-.344Z"/>
   </svg>
+</a>
 
-  <script src="js/script.js"></script>
+<script>
+  /* =========================================================
+     EDITAR AQUI — as 3 coisas que você quer trocar:
+     1) NUMERO_WHATSAPP  → seu número, só dígitos, com DDI+DDD
+     2) MENSAGEM_PRONTA  → texto que já vem escrito no WhatsApp
+     3) LINK_DA_LOGO     → coloque a URL da sua imagem
+     ========================================================= */
+  const NUMERO_WHATSAPP = "5553984599504";
+  const MENSAGEM_PRONTA = "Olá! Vim pelo anúncio e gostaria de falar com a Central da Sorte.";
+  const LINK_DA_LOGO    = ""; // se preencher aqui, sobrescreve o src do <img> lá em cima
+
+  // Monta o link do WhatsApp já com a mensagem pronta
+  const linkWhats = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(MENSAGEM_PRONTA);
+
+  document.getElementById("btn-whats-principal").href = linkWhats;
+  document.getElementById("btn-whats-flutuante").href = linkWhats;
+
+  if (LINK_DA_LOGO) {
+    document.getElementById("logo-img").src = LINK_DA_LOGO;
+  }
+
+  // Esconde o botão flutuante quando o botão principal está na tela,
+  // pra não duplicar o CTA visualmente
+  const btnPrincipal = document.getElementById("btn-whats-principal");
+  const btnFlutuante = document.getElementById("btn-whats-flutuante");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      btnFlutuante.style.display = entry.isIntersecting ? "none" : "flex";
+    }, { threshold: 0.3 });
+    observer.observe(btnPrincipal);
+  }
+</script>
+
 </body>
 </html>
