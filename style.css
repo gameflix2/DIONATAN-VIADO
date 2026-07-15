@@ -1,0 +1,314 @@
+/* =========================================================
+   CENTRAL DA SORTE — design tokens
+   Paleta: verde profundo (confiança/tradição) + dourado (sorte)
+   sobre fundo creme, com o verde do WhatsApp reservado só
+   para os botões de ação (para não competir com o CTA).
+   ========================================================= */
+:root{
+  --green-900: #0f3524;   /* fundo escuro principal */
+  --green-800: #163f2c;   /* fundo escuro secundário / gradiente */
+  --green-700: #1f5c3f;   /* detalhes sobre o escuro */
+  --gold-500:  #c9a24b;   /* dourado — acento de "sorte" */
+  --gold-300:  #e8cf8c;   /* dourado claro, para texto sobre verde */
+  --cream-100: #faf6ec;   /* fundo claro das seções */
+  --cream-050: #fffdf7;   /* fundo dos cards */
+  --ink-900:   #1b2018;   /* texto principal */
+  --ink-600:   #4d5750;   /* texto secundário */
+  --whats-500: #25d366;   /* verde do WhatsApp — reservado para CTAs */
+  --whats-600: #1fa851;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Manrope", -apple-system, Segoe UI, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 10px 30px -12px rgba(15, 53, 36, 0.25);
+  --shadow-btn: 0 12px 24px -8px rgba(37, 211, 102, 0.45);
+
+  --container-w: 1080px;
+}
+
+/* =========================================================
+   RESET BÁSICO
+   ========================================================= */
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink-900);
+  background: var(--cream-100);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img{ max-width: 100%; display: block; }
+a{ color: inherit; text-decoration: none; }
+h1, h2, h3{ font-family: var(--font-display); margin: 0 0 .5em; line-height: 1.1; }
+p{ margin: 0 0 1em; }
+
+.container{
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Rótulos pequenos em versalete/mono — usados como "eyebrow" acima dos títulos */
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  margin-bottom: .9em;
+}
+.eyebrow--dark{ color: var(--green-700); }
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   TREVO — elemento-assinatura, usado como marca-d'água
+   discreta no hero e no CTA final (reforça "Sorte" sem
+   recorrer a ícones de jogo/roleta).
+   ========================================================= */
+.clover-mark{
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  color: var(--gold-500);
+  opacity: .12;
+  pointer-events: none;
+  animation: clover-drift 14s ease-in-out infinite;
+}
+.clover-mark--hero{ top: -60px; right: -60px; }
+.clover-mark--cta{ bottom: -80px; left: -80px; }
+
+@keyframes clover-drift{
+  0%, 100%{ transform: rotate(0deg) scale(1); }
+  50%{ transform: rotate(8deg) scale(1.05); }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 140% at 15% 0%, var(--green-800) 0%, var(--green-900) 65%);
+  color: var(--cream-100);
+  padding-bottom: 64px;
+}
+
+.hero-nav{
+  padding-top: 28px;
+  display: flex;
+}
+.logo{ height: 40px; width: auto; }
+
+.hero-content{
+  position: relative;
+  z-index: 1;
+  padding-top: 56px;
+  max-width: 640px;
+}
+
+.hero h1{
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 600;
+  color: var(--cream-100);
+}
+.hero h1 span{ color: var(--gold-500); font-style: italic; font-weight: 500; }
+
+.hero-subtitle{
+  font-size: 1.08rem;
+  color: rgba(250, 246, 236, 0.82);
+  max-width: 46ch;
+}
+
+.hero-microcopy{
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-size: .88rem;
+  color: rgba(250, 246, 236, 0.6);
+}
+
+.hero-image{
+  position: relative;
+  z-index: 1;
+  margin-top: 44px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  max-width: var(--container-w);
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-image img{ width: 100%; height: auto; }
+
+/* =========================================================
+   BOTÃO WHATSAPP — ação principal, cor reservada só para isso
+   ========================================================= */
+.btn-whats{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--whats-500);
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 26px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-btn);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn-whats:hover{
+  background: var(--whats-600);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -8px rgba(37, 211, 102, 0.55);
+}
+.btn-whats:focus-visible{
+  outline: 3px solid var(--gold-300);
+  outline-offset: 3px;
+}
+.btn-whats--lg{ font-size: 1.02rem; padding: 16px 30px; }
+.icon-whats{ width: 20px; height: 20px; flex-shrink: 0; }
+
+/* =========================================================
+   BENEFÍCIOS
+   ========================================================= */
+.benefits{
+  padding: 96px 0;
+}
+.benefits h2{
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  color: var(--green-900);
+  max-width: 16ch;
+}
+
+.cards{
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card{
+  background: var(--cream-050);
+  border: 1px solid rgba(15, 53, 36, 0.08);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px -14px rgba(15, 53, 36, 0.3);
+}
+.card-badge{
+  display: inline-flex;
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+.card h3{
+  font-size: 1.12rem;
+  color: var(--green-900);
+}
+.card p{
+  color: var(--ink-600);
+  font-size: .95rem;
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   CTA FINAL
+   ========================================================= */
+.cta{
+  position: relative;
+  overflow: hidden;
+  background: var(--green-900);
+  color: var(--cream-100);
+  padding: 96px 0;
+  text-align: center;
+}
+.cta h2{
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: var(--cream-100);
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-subtitle{
+  color: rgba(250, 246, 236, 0.8);
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta .btn-whats{ margin-top: 8px; }
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+.site-footer{
+  background: var(--cream-100);
+  padding: 28px 0 40px;
+}
+.site-footer p{
+  margin: 0;
+  font-size: .85rem;
+  color: var(--ink-600);
+  text-align: center;
+}
+
+/* =========================================================
+   BOTÃO FLUTUANTE
+   ========================================================= */
+.floating-whats{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--whats-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-btn);
+  z-index: 40;
+  animation: pulse-soft 2.6s ease-in-out infinite;
+}
+.floating-whats:hover{ background: var(--whats-600); }
+.floating-whats .icon-whats{ width: 26px; height: 26px; }
+
+@keyframes pulse-soft{
+  0%, 100%{ box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45), var(--shadow-btn); }
+  50%{ box-shadow: 0 0 0 12px rgba(37, 211, 102, 0), var(--shadow-btn); }
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 900px){
+  .cards{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px){
+  .hero{ padding-bottom: 48px; }
+  .hero-content{ padding-top: 40px; }
+  .benefits{ padding: 64px 0; }
+  .cta{ padding: 64px 0; }
+  .cards{ grid-template-columns: 1fr; }
+  .clover-mark{ width: 220px; height: 220px; }
+  .floating-whats{ width: 52px; height: 52px; right: 16px; bottom: 16px; }
+}
