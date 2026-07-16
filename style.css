@@ -640,7 +640,7 @@ button:focus-visible {
 
   .hero__title {
     font-size: clamp(1.6rem, 8vw, 2.4rem);
-    margin-bottom: 40px;  /* ← NOVO: abre espaço depois do título */
+    margin-bottom: 70px;  /* ← NOVO: abre espaço depois do título */
   }
 
   .cta-wrap {
