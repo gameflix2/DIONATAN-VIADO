@@ -634,8 +634,12 @@ button:focus-visible {
   }
 
   .logo-badge {
-    width: 84px;
-    height: 84px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .hero__title {
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
   }
 
   .cta-button__content {
@@ -650,11 +654,5 @@ button:focus-visible {
 
   .cta-button__text strong {
     font-size: 0.98rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .topbar__logo-text {
-    display: none;
   }
 }
